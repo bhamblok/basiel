@@ -1,14 +1,14 @@
 {
-  "name": "boris-hamblok",
+  "name": "basiel-hamblok",
   "version": "1.0.0",
-  "description": "Boris Hamblok",
+  "description": "Basiel Hamblok",
   "main": "index.html",
   "scripts": {
     "start": "simplehttpserver & livereload '.' -p 35730 -ee 'json'"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/bhamblok/boris.git"
+    "url": "git+ssh://git@bitbucket.org/bhamblok/basiel.git"
   },
   "keywords": [],
   "author": "@bhamblok",
