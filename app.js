@@ -40,7 +40,7 @@ const updateDate = () => {
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    if (weeks < 0) weeks += 52;
+    if (weeks <= 0) weeks += 52;
     if (months < 0) months += 12;
   } else {
     seconds = birthDate.getSeconds() - now.getSeconds();
@@ -87,10 +87,6 @@ const updateDate = () => {
     document.querySelector('.minutes').innerHTML = `<span class="digit">${minutes}</span> <span>${minutes === 1 ? 'minuut' : 'minuten'}</span>`;
     cache.minutes = minutes;
   }
-  // if (cache.seconds !== seconds) {
-  //   document.querySelector('.seconds').innerHTML = `<span class="digit">${seconds}</span> <span>${seconds === 1 ? 'seconde' : 'seconden'}</span>`;
-  //   cache.seconds = seconds;
-  // }
 };
 
 const installable = new Promise((resolve) => {
