@@ -17,8 +17,14 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let days = 0;
+let weeks = 0;
 let months = 0;
 let years = 0;
+
+Date.prototype.getWeek = function getWeek() { // eslint-disable-line no-extend-native
+  const onejan = new Date(this.getFullYear(), 0, 1);
+  return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+};
 
 const updateDate = () => {
   const now = new Date();
@@ -27,33 +33,47 @@ const updateDate = () => {
     minutes = now.getMinutes() - birthDate.getMinutes() - (seconds < 0 ? 1 : 0);
     hours = now.getHours() - birthDate.getHours() - (minutes < 0 ? 1 : 0);
     days = now.getDate() - birthDate.getDate() - (hours < 0 ? 1 : 0);
+    weeks = now.getWeek() - birthDate.getWeek();
     months = now.getMonth() - birthDate.getMonth() - (days < 0 ? 1 : 0);
     years = now.getFullYear() - birthDate.getFullYear() - (months < 0 ? 1 : 0);
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    if (weeks < 0) weeks += 52;
     if (months < 0) months += 12;
   } else {
     seconds = birthDate.getSeconds() - now.getSeconds();
     minutes = birthDate.getMinutes() - now.getMinutes() - (seconds < 0 ? 1 : 0);
     hours = birthDate.getHours() - now.getHours() - (minutes < 0 ? 1 : 0);
     days = birthDate.getDate() - now.getDate() - (hours < 0 ? 1 : 0);
+    weeks = birthDate.getWeek() - now.getWeek();
     months = birthDate.getMonth() - now.getMonth() - (days < 0 ? 1 : 0);
     years = birthDate.getFullYear() - now.getFullYear() - (months < 0 ? 1 : 0);
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    if (weeks < 0) weeks += 52;
     if (months < 0) months += 12;
+    if (cache.years !== years) {
+      document.querySelector('.years').innerHTML = '<span class="digit"></span> <span>... nog</span>';
+      cache.years = years;
+    }
   }
   if (cache.years !== years) {
-    document.querySelector('.years').innerHTML = years ? `<span class="digit">${years}</span> <span>jaar</span>` : '';
+    document.querySelector('.years').innerHTML = years ? `<span class="digit">${years}</span> <span>jaar</span>` : `<span class="weeks">(${weeks}</span> <span>${weeks === 1 ? 'week' : 'weken'})</span>`;
     cache.years = years;
   }
   if (cache.months !== months) {
     document.querySelector('.months').innerHTML = (years || months) ? `<span class="digit">${months}</span> <span>${months === 1 ? 'maand' : 'maanden'}</span>` : '<span class="digit">&nbsp;</span> <span> </span>';
     cache.months = months;
+  }
+  if (cache.weeks !== weeks) {
+    if (now < birthDate) {
+      document.querySelector('.years').innerHTML = `<span class="weeks">(... nog</span> <span>${weeks} ${weeks === 1 ? 'week' : 'weken'})</span>`;
+    }
+    cache.weeks = weeks;
   }
   if (cache.days !== days) {
     document.querySelector('.days').innerHTML = `<span class="digit">${days}</span> <span>${days === 1 ? 'dag' : 'dagen'}</span>`;

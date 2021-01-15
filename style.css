@@ -1,6 +1,6 @@
 :root {
-  --bg-gradient: linear-gradient( 135deg, #f2cb8d 10%, #c38423 100%);
-  --text-color: #333333;
+  --bg-gradient: linear-gradient( 135deg, #ddeafb 10%, #eef1f4 100%);
+  --text-color: #464646;
 }
 html, body {
   width: 100vw;
@@ -84,6 +84,7 @@ button,
 .birthdate {
   font-size: 30px;
   text-align: left;
+  padding-top: 20px;
 }
 .birthdate span {
   width: 47%;
@@ -95,4 +96,8 @@ button,
 .birthdate span.digit {
   font-size: 60px;
   text-align: right;
+}
+.birthdate span.weeks {
+  text-align: right;
+  padding: 20px 0;
 }
