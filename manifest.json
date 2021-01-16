@@ -60,8 +60,8 @@
     }
   ],
   "start_url": "/index.html",
-  "background_color": "#ddeafb",
+  "background_color": "#b5c6db",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#ddeafb"
+  "theme_color": "#b5c6db"
 }
