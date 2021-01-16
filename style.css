@@ -1,6 +1,6 @@
 :root {
   --bg-gradient: linear-gradient( 135deg, #b5c6db 10%, #b5d6f7 100%);
-  --text-color: #464646;
+  --text-color: #000000;
 }
 html, body {
   width: 100vw;
