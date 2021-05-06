@@ -40,7 +40,7 @@ const updateDate = () => {
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    if (weeks <= 0) weeks += 52;
+    if (weeks < 0) weeks += 52;
     if (months < 0) months += 12;
   } else {
     seconds = birthDate.getSeconds() - now.getSeconds();
