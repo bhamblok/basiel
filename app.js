@@ -28,33 +28,30 @@ Date.prototype.getWeek = function getWeek() { // eslint-disable-line no-extend-n
 
 const updateDate = () => {
   const now = new Date();
+  weeks = Math.floor((now - birthDate) / 1000 / 60 / 60 / 24 / 7);
   if (now > birthDate) {
     seconds = now.getSeconds() - birthDate.getSeconds();
     minutes = now.getMinutes() - birthDate.getMinutes() - (seconds < 0 ? 1 : 0);
     hours = now.getHours() - birthDate.getHours() - (minutes < 0 ? 1 : 0);
     days = now.getDate() - birthDate.getDate() - (hours < 0 ? 1 : 0);
-    weeks = now.getWeek() - birthDate.getWeek();
     months = now.getMonth() - birthDate.getMonth() - (days < 0 ? 1 : 0);
     years = now.getFullYear() - birthDate.getFullYear() - (months < 0 ? 1 : 0);
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    if (weeks <= 0) weeks += 52;
     if (months < 0) months += 12;
   } else {
     seconds = birthDate.getSeconds() - now.getSeconds();
     minutes = birthDate.getMinutes() - now.getMinutes() - (seconds < 0 ? 1 : 0);
     hours = birthDate.getHours() - now.getHours() - (minutes < 0 ? 1 : 0);
     days = birthDate.getDate() - now.getDate() - (hours < 0 ? 1 : 0);
-    weeks = birthDate.getWeek() - now.getWeek();
     months = birthDate.getMonth() - now.getMonth() - (days < 0 ? 1 : 0);
     years = birthDate.getFullYear() - now.getFullYear() - (months < 0 ? 1 : 0);
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    if (weeks < 0) weeks += 52;
     if (months < 0) months += 12;
     if (cache.years !== years) {
       document.querySelector('.years').innerHTML = '<span class="digit"></span> <span>... nog</span>';
