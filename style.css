@@ -45,12 +45,11 @@ body {
   height: 100vh;
   grid-template-columns: 1fr 1fr 1fr;
   /* grid-template-rows: 1fr 80px; */
-  grid-template-rows: 1fr 14px;
+  grid-template-rows: 1fr;
   /* grid-template-areas:
     "main main main"
     "left center right"; */
-  grid-template-areas: "main main main"
-                        "footer footer footer";
+  grid-template-areas: "main main main";
 }
 .content {
   grid-area: main;
@@ -101,11 +100,4 @@ button,
 .birthdate span.weeks {
   text-align: right;
   padding: 20px 0;
-}
-.version {
-  font-size: 10px;
-  text-align: right;
-  grid-area: footer;
-  padding: 0 10px 4px 0;
-  color: grey;
 }
