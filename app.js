@@ -39,7 +39,7 @@ const updateDate = () => {
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
-    if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    if (days < 0) days += new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate();
     if (months < 0) months += 12;
   } else {
     seconds = birthDate.getSeconds() - now.getSeconds();
@@ -51,7 +51,7 @@ const updateDate = () => {
     if (seconds < 0) seconds += 60;
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
-    if (days < 0) days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    if (days < 0) days += new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate();
     if (months < 0) months += 12;
     if (cache.years !== years) {
       document.querySelector('.years').innerHTML = '<span class="digit"></span> <span>... nog</span>';
@@ -104,9 +104,9 @@ window.addEventListener('appinstalled', () => {
 
 window.addEventListener('load', async () => {
   // Registering Service Worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }
+  // if ('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register('/sw.js');
+  // }
   if (window.location.hostname === 'localhost') {
     const livereload = document.createElement('script');
     livereload.src = 'http://localhost:35730/livereload.js?snipver=1';
